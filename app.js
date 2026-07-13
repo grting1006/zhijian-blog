@@ -5,7 +5,7 @@ let isAdmin = false;
 let articles = window.loadArticles(storageKey);
 let activeId = articles[0]?.id;
 let editingId = null;
-const list = document.querySelector("#articleList"), count = document.querySelector("#articleCount");
+const list = document.querySelector("#articleList"), count = document.querySelector("#articleCount"), dateFilter = document.querySelector("#dateFilter");
 let favorites = window.loadBlogCollection(favoritesKey), folders = window.loadBlogCollection(foldersKey, ["默认收藏"]);
 let activeFolder = folders[0], activeFavoriteType = null;
 document.querySelectorAll(".admin-only").forEach(element => element.hidden = true);
@@ -16,7 +16,8 @@ function markup(text) { return text.split("\n").map(line => { if (line.startsWit
 function dateLabel(date) { return new Intl.DateTimeFormat("zh-CN", { year:"numeric", month:"long", day:"numeric" }).format(new Date(`${date}T00:00:00`)); }
 function persist() { localStorage.setItem(storageKey, JSON.stringify(articles)); }
 function persistRepositoryData() { if (!isAdmin) return; fetch("/api/local-data", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ articles }) }).catch(() => {}); }
-function render() { count.textContent = String(articles.length).padStart(2,"0"); list.innerHTML = articles.length ? articles.map(article => `<a class="article-item" href="article.html?id=${encodeURIComponent(article.id)}"><time>${article.date.replaceAll("-", ".")}</time><h3>${escapeHtml(article.title)}</h3><span class="read-arrow">↗</span></a>`).join("") : `<p class="empty-list">还没有文章。<br />从右上角写下第一篇吧。</p>`; }
+function render() { const visibleArticles = dateFilter.value ? articles.filter(article => article.date === dateFilter.value) : articles; count.textContent = String(visibleArticles.length).padStart(2,"0"); list.innerHTML = visibleArticles.length ? visibleArticles.map(article => `<a class="article-item" href="article.html?id=${encodeURIComponent(article.id)}"><time>${article.date.replaceAll("-", ".")}</time><h3>${escapeHtml(article.title)}</h3><span class="read-arrow">↗</span></a>`).join("") : `<p class="empty-list">当天还没有文章。<br />清除日期筛选即可查看全部内容。</p>`; }
+dateFilter.addEventListener("change", render);
 const dialog = document.querySelector("#composer"), form = document.querySelector("#articleForm");
 const field = id => document.querySelector(id);
 function setComposerMode(article) { editingId = article?.id || null; field("#composerKicker").textContent = article ? "EDIT ENTRY" : "NEW ENTRY"; field("#composerTitle").textContent = article ? "修改这篇文章" : "写下这一刻"; field("#submitArticle").textContent = article ? "保存修改" : "发布文章"; }

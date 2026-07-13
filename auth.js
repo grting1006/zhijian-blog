@@ -10,7 +10,7 @@
   const loadData = async id => { if (useServer) try { return normalize(await request(`/api/user-data?id=${encodeURIComponent(id)}`)); } catch { useServer = false; } return localRead(id); };
   const dialog = document.createElement("dialog");
   dialog.id = "loginDialog";
-  dialog.innerHTML = `<form class="login-card" id="loginForm"><div class="composer-head"><div><p class="eyebrow">WELCOME BACK</p><h2>进入纸间</h2></div><button class="icon-button" id="closeLogin" type="button" aria-label="关闭">×</button></div><label>账号 ID<input id="loginId" autocomplete="username" required placeholder="输入 test 或 admin" /></label><p class="login-error" id="loginError" role="alert"></p><button class="save-button" type="submit">进入</button></form>`;
+  dialog.innerHTML = `<form class="login-card" id="loginForm"><div class="composer-head"><div><p class="eyebrow">WELCOME BACK</p><h2>进入纸间</h2></div><button class="icon-button" id="closeLogin" type="button" aria-label="关闭">×</button></div><label>账号 ID<input id="loginId" autocomplete="username" required placeholder="输入用户ID" /></label><p class="login-error" id="loginError" role="alert"></p><button class="save-button" type="submit">进入</button></form>`;
   document.body.append(dialog);
   const actions = document.querySelector(".topbar-actions") || document.querySelector(".topbar");
   const account = document.createElement("div");
