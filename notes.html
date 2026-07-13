@@ -12,12 +12,12 @@
   <body>
     <div class="site-shell page-enter">
       <header class="topbar"><a class="brand" href="index.html"><span>纸</span>间</a><a class="back-link" href="index.html">← 返回阅读</a></header>
-      <main class="notes-layout">
-        <section class="notes-editor"><p class="eyebrow">PRIVATE READING NOTES</p><h1>我的随笔</h1><p class="notes-intro">这里的文字只保留在这台设备上。</p><label>标题<input id="noteTitle" maxlength="60" placeholder="今天读到了什么？" /></label><label>感悟<textarea id="noteContent" rows="11" placeholder="写下你的阅读感悟……"></textarea></label><div class="note-actions"><button class="reference-button" id="openReferences" type="button">引用收藏</button><button class="save-button" id="saveNote" type="button">保存随笔</button></div></section>
-        <aside class="notes-list-wrap"><div class="index-head"><span>已保存的随笔</span><span id="notesCount">00</span></div><div class="notes-list" id="notesList"></div></aside>
+      <main class="notes-home">
+        <section class="write-note-module"><p class="eyebrow">PRIVATE READING NOTES</p><div><div><h1>我的随笔</h1><p>把阅读后的片刻留在这台设备上。</p></div><a class="write-note-link" href="note-editor.html">写随笔 <span>→</span></a></div></section>
+        <section class="saved-notes"><div class="index-head"><span>已保存的随笔</span><span id="notesCount">00</span></div><div class="notes-grid" id="notesList"></div></section>
       </main>
     </div>
-    <dialog id="referencesDialog"><section class="favorites-card"><div class="composer-head"><div><p class="eyebrow">YOUR SAVES</p><h2>引用收藏</h2></div><button class="icon-button" id="closeReferences" type="button" aria-label="关闭">×</button></div><div class="reference-list" id="referenceList"></div></section></dialog>
+    <dialog id="noteViewer"><section class="note-viewer-card"><button class="icon-button" id="closeNoteViewer" type="button" aria-label="关闭">×</button><time id="viewerDate"></time><h1 id="viewerTitle"></h1><div id="viewerContent"></div></section></dialog>
     <script src="notes.js"></script>
   </body>
 </html>
