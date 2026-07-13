@@ -4,7 +4,17 @@ import { extname, join, normalize } from "node:path";
 
 const root = process.cwd();
 const contentFile = join(root, "local-content.json");
-const mimeTypes = { ".css":"text/css", ".html":"text/html", ".js":"text/javascript", ".json":"application/json", ".mjs":"text/javascript" };
+const mimeTypes = {
+  ".css":"text/css",
+  ".html":"text/html",
+  ".js":"text/javascript",
+  ".json":"application/json",
+  ".mjs":"text/javascript",
+  ".jpeg":"image/jpeg",
+  ".jpg":"image/jpeg",
+  ".png":"image/png",
+  ".webp":"image/webp"
+};
 
 createServer(async (request, response) => {
   if (request.method === "POST" && request.url === "/api/local-data") {
