@@ -12,7 +12,7 @@
   <body>
     <div class="site-shell page-enter">
       <header class="topbar"><a class="brand" href="index.html"><span>纸</span>间</a><a class="back-link" href="notes.html">← 返回随笔</a></header>
-      <main class="note-editor-page"><p class="eyebrow">WRITE A NOTE</p><h1>写随笔</h1><p class="notes-intro">它只留在你的本地浏览器中。</p><label>标题<input id="noteTitle" maxlength="60" placeholder="今天读到了什么？" /></label><label>感悟<textarea id="noteContent" rows="12" placeholder="写下你的阅读感悟……"></textarea></label><div class="note-actions"><button class="reference-button" id="openReferences" type="button">引用收藏</button><button class="save-button" id="saveNote" type="button">保存随笔</button></div></main>
+      <main class="note-editor-page"><p class="eyebrow" id="noteKicker">WRITE A NOTE</p><h1 id="noteHeading">写随笔</h1><p class="notes-intro">它只留在你的本地浏览器中。</p><label>标题<input id="noteTitle" maxlength="60" placeholder="今天读到了什么？" /></label><label>感悟<textarea id="noteContent" rows="12" placeholder="写下你的阅读感悟……"></textarea></label><div class="note-actions"><button class="reference-button" id="openReferences" type="button">引用收藏</button><button class="save-button" id="saveNote" type="button">保存随笔</button></div></main>
     </div>
     <dialog id="referencesDialog"><section class="favorites-card"><div class="composer-head"><div><p class="eyebrow">YOUR SAVES</p><h2>引用收藏</h2></div><button class="icon-button" id="closeReferences" type="button" aria-label="关闭">×</button></div><div class="reference-list" id="referenceList"></div></section></dialog>
     <script src="note-editor.js"></script>
