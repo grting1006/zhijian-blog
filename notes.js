@@ -1,5 +1,5 @@
 const notesKey = "zhijian-reader-notes";
-let notes = JSON.parse(localStorage.getItem(notesKey) || "[]");
+let notes = window.loadBlogCollection(notesKey);
 let selectedNoteId = null;
 const $ = selector => document.querySelector(selector);
 const esc = value => value.replace(/[&<>\"]/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[char]));

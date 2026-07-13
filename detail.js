@@ -2,8 +2,8 @@ const articles = window.loadArticles("zhijian-articles");
 const article = articles.find(item => item.id === new URLSearchParams(location.search).get("id"));
 const favoritesKey = "zhijian-favorites";
 const foldersKey = "zhijian-favorite-folders";
-const favorites = JSON.parse(localStorage.getItem(favoritesKey) || "[]");
-const folders = JSON.parse(localStorage.getItem(foldersKey) || "null") || ["默认收藏"];
+const favorites = window.loadBlogCollection(favoritesKey);
+const folders = window.loadBlogCollection(foldersKey, ["默认收藏"]);
 const isLocalAdmin = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
 const escapeHtml = value => value.replace(/[&<>\"]/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[char]));
 const inlineMarkup = text => escapeHtml(text)

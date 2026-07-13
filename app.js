@@ -6,7 +6,7 @@ let articles = window.loadArticles(storageKey);
 let activeId = articles[0]?.id;
 let editingId = null;
 const list = document.querySelector("#articleList"), count = document.querySelector("#articleCount");
-let favorites = JSON.parse(localStorage.getItem(favoritesKey) || "[]"), folders = JSON.parse(localStorage.getItem(foldersKey) || "null") || ["默认收藏"];
+let favorites = window.loadBlogCollection(favoritesKey), folders = window.loadBlogCollection(foldersKey, ["默认收藏"]);
 let activeFolder = folders[0], activeFavoriteType = null;
 if (!isLocalAdmin) document.querySelectorAll(".admin-only").forEach(element => element.hidden = true);
 const escapeHtml = (value) => value.replace(/[&<>\"]/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[char]));

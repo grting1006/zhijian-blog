@@ -93,10 +93,33 @@ const defaultArticles = [
 ];
 
 window.defaultArticles = defaultArticles;
+const sourceData = window.__BLOG_CONTENT__ || {};
+const parseStored = key => {
+  try { return JSON.parse(localStorage.getItem(key) || "null"); }
+  catch { return null; }
+};
+const mergeRecords = (stored, source) => {
+  const byId = new Map();
+  (stored || []).forEach(item => byId.set(item.id, item));
+  (source || []).forEach(item => byId.set(item.id, item));
+  return [...byId.values()];
+};
+window.loadBlogCollection = (key, fallback = []) => {
+  const stored = parseStored(key);
+  const sourceKey = { "zhijian-favorites":"favorites", "zhijian-favorite-folders":"folders", "zhijian-reader-notes":"notes" }[key];
+  const source = sourceData[sourceKey] || [];
+  let merged;
+  if (key === "zhijian-favorite-folders") merged = [...new Set([...(stored || []), ...source])];
+  else merged = mergeRecords(stored, source);
+  if (!merged.length && fallback.length) merged = [...fallback];
+  localStorage.setItem(key, JSON.stringify(merged));
+  return merged;
+};
 window.loadArticles = storageKey => {
-  const stored = JSON.parse(localStorage.getItem(storageKey) || "null");
-  if (!stored) return defaultArticles.map(article => ({ ...article }));
-  const storedIds = new Set(stored.map(article => article.id));
-  return [...defaultArticles.filter(article => !storedIds.has(article.id)), ...stored]
+  const stored = parseStored(storageKey);
+  const repositoryArticles = sourceData.articles || [];
+  const merged = mergeRecords([...defaultArticles, ...(stored || [])], repositoryArticles);
+  localStorage.setItem(storageKey, JSON.stringify(merged));
+  return merged
     .sort((left, right) => right.date.localeCompare(left.date));
 };

@@ -4,6 +4,7 @@ import { extname, join, normalize } from "node:path";
 
 const root = process.cwd();
 const contentFile = join(root, "local-content.json");
+const contentScriptFile = join(root, "local-content.js");
 const mimeTypes = {
   ".css":"text/css",
   ".html":"text/html",
@@ -20,7 +21,7 @@ createServer(async (request, response) => {
   if (request.method === "POST" && request.url === "/api/local-data") {
     let body = "";
     for await (const chunk of request) body += chunk;
-    try { JSON.parse(body); await writeFile(contentFile, `${body}\n`, "utf8"); response.writeHead(204).end(); }
+    try { const content = JSON.parse(body); const serialized = `${JSON.stringify(content, null, 2)}\n`; await writeFile(contentFile, serialized, "utf8"); await writeFile(contentScriptFile, `window.__BLOG_CONTENT__ = ${JSON.stringify(content)};\n`, "utf8"); response.writeHead(204).end(); }
     catch { response.writeHead(400).end("Invalid local data"); }
     return;
   }
