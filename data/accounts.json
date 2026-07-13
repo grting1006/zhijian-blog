@@ -1,6 +1,6 @@
 {
   "accounts": [
     { "id": "test", "role": "user" },
-    { "id": "admin", "role": "admin", "passwordHash": "47b339d1602026193a4f4015a284517042475ec2a76ae4eff4449a25fb0f3546" }
+    { "id": "admin", "role": "admin" }
   ]
 }
