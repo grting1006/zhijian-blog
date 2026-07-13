@@ -4,10 +4,15 @@ const seedArticles = [
   { id: "work", title: "把注意力还给一件事", date: "2026-05-30", category: "工作", excerpt: "少一些切换，事情反而开始向前走。", content: "屏幕上的标签页总会越开越多，直到我意识到：分心不总是因为事情太多，而是因为我们习惯了随时响应。\n\n最近我尝试把上午的前九十分钟留给最重要的一件事。关掉提醒，不回复消息，只做一件需要思考的工作。\n\n结果并不神奇，但很踏实。**专注不是逼自己更快，而是让时间重新有了形状。**" }
 ];
 const storageKey = "zhijian-articles";
+const favoritesKey = "zhijian-favorites";
+const foldersKey = "zhijian-favorite-folders";
+const isLocalAdmin = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
 let articles = JSON.parse(localStorage.getItem(storageKey) || "null") || seedArticles;
 let activeId = articles[0]?.id;
 let editingId = null;
 const list = document.querySelector("#articleList"), view = document.querySelector("#articleView"), count = document.querySelector("#articleCount");
+let favorites = JSON.parse(localStorage.getItem(favoritesKey) || "[]"), folders = JSON.parse(localStorage.getItem(foldersKey) || "null") || ["默认收藏"];
+if (!isLocalAdmin) document.querySelectorAll(".admin-only").forEach(element => element.hidden = true);
 const escapeHtml = (value) => value.replace(/[&<>\"]/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[char]));
 function inlineMarkup(text) { return escapeHtml(text).replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"); }
 function markup(text) { return text.split("\n").map(line => { if (line.startsWith("## ")) return `<h3>${inlineMarkup(line.slice(3))}</h3>`; if (line.startsWith("> ")) return `<blockquote>${inlineMarkup(line.slice(2))}</blockquote>`; if (!line.trim()) return ""; return `<p>${inlineMarkup(line)}</p>`; }).join(""); }
@@ -17,12 +22,23 @@ function render() { const current = articles.find(a => a.id === activeId) || art
 const dialog = document.querySelector("#composer"), form = document.querySelector("#articleForm");
 const field = id => document.querySelector(id);
 function setComposerMode(article) { editingId = article?.id || null; field("#composerKicker").textContent = article ? "EDIT ENTRY" : "NEW ENTRY"; field("#composerTitle").textContent = article ? "修改这篇文章" : "写下这一刻"; field("#submitArticle").textContent = article ? "保存修改" : "发布文章"; }
-function open(article) { form.reset(); setComposerMode(article); field("#fileName").textContent = "支持 .md / .txt"; if (article) { field("#titleInput").value = article.title; field("#dateInput").value = article.date; field("#categoryInput").value = article.category; field("#excerptInput").value = article.excerpt; field("#contentInput").value = article.content; } else { field("#dateInput").value = new Date().toISOString().slice(0,10); } dialog.showModal(); }
+function open(article) { form.reset(); setComposerMode(article); field("#fileName").textContent = "支持 .md / .txt"; field("#chartBuilder").hidden = true; if (article) { field("#titleInput").value = article.title; field("#dateInput").value = article.date; field("#categoryInput").value = article.category; field("#excerptInput").value = article.excerpt; field("#contentInput").value = article.content; } else { field("#dateInput").value = new Date().toISOString().slice(0,10); } dialog.showModal(); }
 function closeComposer() { dialog.close(); editingId = null; }
 document.querySelector("#openComposer").addEventListener("click", () => open()); ["#closeComposer", "#cancelComposer"].forEach(id => document.querySelector(id).addEventListener("click", closeComposer));
 document.querySelector("#importButton").addEventListener("click", () => document.querySelector("#fileInput").click());
 document.querySelector("#fileInput").addEventListener("change", async event => { const file = event.target.files[0]; if (!file) return; document.querySelector("#contentInput").value = await file.text(); document.querySelector("#fileName").textContent = file.name; });
+document.querySelector("#imageButton").addEventListener("click", () => field("#imageInput").click());
+field("#imageInput").addEventListener("change", async event => { const image = event.target.files[0]; if (!image) return; const dataUrl = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(image); }); field("#contentInput").value += `${field("#contentInput").value.trim() ? "\n\n" : ""}![${image.name}](${dataUrl})`; field("#fileName").textContent = `已插入图片：${image.name}`; });
+field("#chartButton").addEventListener("click", () => { field("#chartBuilder").hidden = !field("#chartBuilder").hidden; });
+field("#insertChart").addEventListener("click", () => { const title = field("#chartTitle").value.trim() || "数据记录"; const labels = field("#chartLabels").value.split(",").map(item => item.trim()).filter(Boolean); const values = field("#chartValues").value.split(",").map(item => Number(item.trim())); if (!labels.length || labels.length !== values.length || values.some(value => !Number.isFinite(value))) { alert("请填写数量一致的标签和数值。"); return; } field("#contentInput").value += `${field("#contentInput").value.trim() ? "\n\n" : ""}{{chart|${title}|${labels.join(",")}|${values.join(",")}}}`; field("#chartBuilder").hidden = true; field("#chartTitle").value = ""; field("#chartLabels").value = ""; field("#chartValues").value = ""; });
 form.addEventListener("submit", event => { event.preventDefault(); const article = { id: editingId || `${Date.now()}`, title: field("#titleInput").value.trim(), date: field("#dateInput").value, category: field("#categoryInput").value.trim(), excerpt: field("#excerptInput").value.trim(), content: field("#contentInput").value.trim() }; const existingIndex = articles.findIndex(item => item.id === editingId); if (existingIndex >= 0) articles[existingIndex] = article; else articles.unshift(article); persist(); activeId = article.id; closeComposer(); render(); });
 const editTarget = new URLSearchParams(location.search).get("edit");
 if (editTarget) { const article = articles.find(item => item.id === editTarget); if (article) open(article); history.replaceState({}, "", "index.html"); }
+const favoritesDialog = field("#favoritesDialog");
+function persistFavorites() { localStorage.setItem(favoritesKey, JSON.stringify(favorites)); localStorage.setItem(foldersKey, JSON.stringify(folders)); }
+function renderFavorites() { field("#folderPills").innerHTML = folders.map(folder => `<span class="folder-pill">${escapeHtml(folder)}</span>`).join(""); field("#favoritesList").innerHTML = favorites.length ? folders.map(folder => { const entries = favorites.filter(item => item.folder === folder); return `<section class="folder-section"><h3>${escapeHtml(folder)}</h3>${["article","text","image","chart"].map(type => { const group = entries.filter(item => item.type === type); const labels = {article:"文章",text:"文字",image:"图片",chart:"图表"}; return `<div class="favorite-group"><h4>${labels[type]}</h4>${group.length ? group.map(item => `<article class="favorite-card"><div><h3>${escapeHtml(item.title)}</h3></div><button class="remove-favorite" data-favorite-id="${item.id}" type="button" aria-label="移除收藏">×</button></article>`).join("") : `<p class="empty-group">暂无${labels[type]}</p>`}</div>`; }).join("")}</section>`; }).join("") : `<p class="empty-favorites">还没有收藏。到文章详情页收藏文字、图片、图表或整篇文章。</p>`; }
+field("#openFavorites").addEventListener("click", () => { renderFavorites(); favoritesDialog.showModal(); });
+field("#closeFavorites").addEventListener("click", () => favoritesDialog.close());
+field("#folderForm").addEventListener("submit", event => { event.preventDefault(); const name = field("#folderInput").value.trim(); if (!name || folders.includes(name)) return; folders.push(name); field("#folderInput").value = ""; persistFavorites(); renderFavorites(); });
+field("#favoritesList").addEventListener("click", event => { const button = event.target.closest("[data-favorite-id]"); if (!button) return; favorites = favorites.filter(item => item.id !== button.dataset.favoriteId); persistFavorites(); renderFavorites(); });
 render();

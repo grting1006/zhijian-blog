@@ -15,7 +15,7 @@
       <header class="topbar">
         <a class="brand" href="#" aria-label="纸间首页"><span>纸</span>间</a>
         <nav aria-label="主要导航"><a class="active" href="#latest">文章</a><a href="#about">关于</a></nav>
-        <button class="publish-button" id="openComposer" type="button"><span>+</span> 写一篇</button>
+        <div class="topbar-actions"><button class="favorites-button" id="openFavorites" type="button">收藏夹</button><a class="journal-link" href="notes.html">我的随笔</a><button class="publish-button admin-only" id="openComposer" type="button"><span>+</span> 管理文章</button></div>
       </header>
 
       <main>
@@ -45,9 +45,19 @@
         <div class="form-row"><label>日期<input id="dateInput" type="date" required /></label><label>分类<input id="categoryInput" required maxlength="20" placeholder="如：随笔" /></label></div>
         <label>摘要<textarea id="excerptInput" required maxlength="150" rows="2" placeholder="用一句话概括这篇文章"></textarea></label>
         <label>正文 <span class="label-note">支持简单 Markdown</span><textarea id="contentInput" required rows="8" placeholder="从这里开始写……"></textarea></label>
+        <div class="content-tools"><input type="file" id="imageInput" accept="image/*" hidden /><button type="button" class="tool-button" id="imageButton">添加图片</button><button type="button" class="tool-button" id="chartButton">插入图表</button></div>
+        <div class="chart-builder" id="chartBuilder" hidden><label>图表标题<input id="chartTitle" maxlength="30" placeholder="如：本周阅读时长" /></label><label>标签 <span class="label-note">用逗号分隔</span><input id="chartLabels" placeholder="周一, 周二, 周三" /></label><label>数值 <span class="label-note">用逗号分隔</span><input id="chartValues" inputmode="decimal" placeholder="2, 4, 3" /></label><button type="button" class="insert-chart-button" id="insertChart">添加到正文</button></div>
         <div class="import-row"><input type="file" id="fileInput" accept=".md,.markdown,.txt,text/markdown,text/plain" hidden /><button type="button" class="import-button" id="importButton">从文件导入</button><span id="fileName">支持 .md / .txt</span></div>
         <div class="composer-actions"><button type="button" class="cancel-button" id="cancelComposer">取消</button><button class="save-button" type="submit" id="submitArticle">发布文章</button></div>
       </form>
+    </dialog>
+    <dialog id="favoritesDialog">
+      <section class="favorites-card">
+        <div class="composer-head"><div><p class="eyebrow">MY COLLECTIONS</p><h2>收藏夹</h2></div><button class="icon-button" type="button" id="closeFavorites" aria-label="关闭">×</button></div>
+        <form class="folder-form" id="folderForm"><input id="folderInput" maxlength="20" required placeholder="新建收藏夹名称" /><button class="save-button" type="submit">新建</button></form>
+        <div class="folder-pills" id="folderPills"></div>
+        <div class="favorites-list" id="favoritesList"></div>
+      </section>
     </dialog>
     <script src="app.js"></script>
   </body>
