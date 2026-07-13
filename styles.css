@@ -30,6 +30,9 @@ label { display:block; font-weight:600; font-size:14px; margin-top:16px; }.label
 .article-body a:hover{color:var(--accent);text-decoration-color:var(--accent)}
 .inline-image{background:#fff;border:1px solid var(--line)}
 .inline-image img{object-fit:contain}
+.favorite-card-link{display:block;min-width:0;padding-left:10px;color:var(--ink);text-decoration:none}
+.favorite-card-link:hover h3{color:var(--accent)}
+.favorite-target{outline:2px solid var(--accent);outline-offset:8px;border-radius:6px}
 @media (max-width:720px){
   .chart-bars{gap:6px}
   .chart-bar-wrap{min-width:44px}

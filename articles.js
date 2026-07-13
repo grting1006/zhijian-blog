@@ -109,7 +109,8 @@ window.loadBlogCollection = (key, fallback = []) => {
   const sourceKey = { "zhijian-favorites":"favorites", "zhijian-favorite-folders":"folders", "zhijian-reader-notes":"notes" }[key];
   const source = sourceData[sourceKey] || [];
   let merged;
-  if (key === "zhijian-favorite-folders") merged = [...new Set([...(stored || []), ...source])];
+  if (Array.isArray(sourceData[sourceKey])) merged = [...source];
+  else if (key === "zhijian-favorite-folders") merged = [...new Set([...(stored || []), ...source])];
   else merged = mergeRecords(stored, source);
   if (!merged.length && fallback.length) merged = [...fallback];
   localStorage.setItem(key, JSON.stringify(merged));
@@ -118,7 +119,9 @@ window.loadBlogCollection = (key, fallback = []) => {
 window.loadArticles = storageKey => {
   const stored = parseStored(storageKey);
   const repositoryArticles = sourceData.articles || [];
-  const merged = mergeRecords([...defaultArticles, ...(stored || [])], repositoryArticles);
+  const merged = Array.isArray(sourceData.articles) && repositoryArticles.length
+    ? [...repositoryArticles]
+    : mergeRecords([...defaultArticles, ...(stored || [])], repositoryArticles);
   localStorage.setItem(storageKey, JSON.stringify(merged));
   return merged
     .sort((left, right) => right.date.localeCompare(left.date));
