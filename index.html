@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f7f3" />
+    <title>纸间 | 个人博客</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="纸间首页"><span>纸</span>间</a>
+        <nav aria-label="主要导航"><a class="active" href="#latest">文章</a><a href="#about">关于</a></nav>
+        <button class="publish-button" id="openComposer" type="button"><span>+</span> 写一篇</button>
+      </header>
+
+      <main>
+        <section class="intro" id="latest">
+          <p class="eyebrow">PERSONAL NOTES / 2026</p>
+          <h1>在日常里<br />收集一点光。</h1>
+          <p class="intro-copy">日常财报</p>
+        </section>
+
+        <div class="content-grid">
+          <aside class="article-index" aria-label="文章列表">
+            <div class="index-head"><span>文章目录</span><span id="articleCount">00</span></div>
+            <div id="articleList" class="article-list"></div>
+          </aside>
+
+          <article class="article-view" id="articleView" aria-live="polite"></article>
+        </div>
+      </main>
+
+      <footer id="about"><p>纸间 · 一方私人的记录空间</p><p>© 2026</p></footer>
+    </div>
+
+    <dialog id="composer">
+      <form method="dialog" class="composer-card" id="articleForm">
+        <div class="composer-head"><div><p class="eyebrow" id="composerKicker">NEW ENTRY</p><h2 id="composerTitle">写下这一刻</h2></div><button class="icon-button" type="button" id="closeComposer" aria-label="关闭">×</button></div>
+        <label>文章标题<input id="titleInput" required maxlength="70" placeholder="给这篇文章一个标题" /></label>
+        <div class="form-row"><label>日期<input id="dateInput" type="date" required /></label><label>分类<input id="categoryInput" required maxlength="20" placeholder="如：随笔" /></label></div>
+        <label>摘要<textarea id="excerptInput" required maxlength="150" rows="2" placeholder="用一句话概括这篇文章"></textarea></label>
+        <label>正文 <span class="label-note">支持简单 Markdown</span><textarea id="contentInput" required rows="8" placeholder="从这里开始写……"></textarea></label>
+        <div class="import-row"><input type="file" id="fileInput" accept=".md,.markdown,.txt,text/markdown,text/plain" hidden /><button type="button" class="import-button" id="importButton">从文件导入</button><span id="fileName">支持 .md / .txt</span></div>
+        <div class="composer-actions"><button type="button" class="cancel-button" id="cancelComposer">取消</button><button class="save-button" type="submit" id="submitArticle">发布文章</button></div>
+      </form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
