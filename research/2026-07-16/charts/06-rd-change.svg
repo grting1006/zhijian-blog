@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#fbfcf9"/>
+  <text x="60" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#17231d">研发费用同比变化</text>
+  <text x="60" y="88" font-family="Arial,sans-serif" font-size="16" fill="#607067">2026H1，%</text>
+  <line x1="100" y1="270" x2="900" y2="270" stroke="#9aa69f" stroke-width="2"/>
+  <rect x="220" y="270" width="180" height="112" fill="#d36b55"/><rect x="575" y="110" width="180" height="160" fill="#6f9f58"/>
+  <text x="310" y="410" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#a84e3c">-18.07%</text><text x="665" y="96" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#3e6d33">+50.68%</text>
+  <text x="310" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#27362f">沃华医药</text><text x="665" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#27362f">优彩资源</text>
+  <text x="310" y="490" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#607067">研发费用 0.166 亿元</text><text x="665" y="490" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#607067">研发费用 0.369 亿元</text>
+</svg>

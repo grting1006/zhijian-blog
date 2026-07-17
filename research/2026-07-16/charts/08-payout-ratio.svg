@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#fbfcf9"/>
+  <text x="60" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#17231d">中期分红：拟派现金 / 归母净利润</text>
+  <text x="60" y="88" font-family="Arial,sans-serif" font-size="16" fill="#607067">2026H1，近似派息率，%</text>
+  <line x1="100" y1="430" x2="900" y2="430" stroke="#b9c2bc" stroke-width="2"/>
+  <line x1="100" y1="100" x2="900" y2="100" stroke="#d36b55" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="105" y="90" font-family="Arial,sans-serif" font-size="15" fill="#a84e3c">100% 利润覆盖线</text>
+  <rect x="220" y="100" width="180" height="330" fill="#4f7f86"/><rect x="575" y="146" width="180" height="284" fill="#6f9f58"/>
+  <text x="310" y="470" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#27362f">沃华医药</text><text x="665" y="470" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#27362f">优彩资源</text>
+  <text x="310" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#ffffff">99.95%</text><text x="665" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#ffffff">85.92%</text>
+</svg>

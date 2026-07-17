@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#fbfcf9"/>
+  <text x="60" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#17231d">毛利率变化：利润改善的主轴</text>
+  <text x="60" y="88" font-family="Arial,sans-serif" font-size="16" fill="#607067">2025H1 vs 2026H1，%</text>
+  <line x1="100" y1="440" x2="900" y2="440" stroke="#b9c2bc" stroke-width="2"/>
+  <rect x="150" y="143" width="125" height="297" fill="#b7c1bb"/><rect x="290" y="129" width="125" height="311" fill="#4f7f86"/>
+  <rect x="555" y="415" width="125" height="25" fill="#b7c1bb"/><rect x="695" y="386" width="125" height="54" fill="#6f9f58"/>
+  <text x="212" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#526057">74.26</text><text x="352" y="114" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#3f656a">77.84</text>
+  <text x="617" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#526057">6.37</text><text x="757" y="371" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#3e6d33">13.49</text>
+  <text x="282" y="480" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#27362f">沃华医药</text><text x="687" y="480" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#27362f">优彩资源</text>
+  <text x="760" y="92" font-family="Arial,sans-serif" font-size="15" fill="#607067">灰：2025H1  彩色：2026H1</text>
+</svg>

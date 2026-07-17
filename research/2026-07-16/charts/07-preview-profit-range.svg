@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#fbfcf9"/>
+  <text x="60" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#17231d">高景气预告样本：利润体量差异</text>
+  <text x="60" y="88" font-family="Arial,sans-serif" font-size="16" fill="#607067">2026H1预计归母净利润区间，亿元；对数刻度</text>
+  <line x1="130" y1="420" x2="880" y2="420" stroke="#b9c2bc" stroke-width="2"/>
+  <line x1="190" y1="398" x2="190" y2="442" stroke="#27362f" stroke-width="2"/><line x1="350" y1="398" x2="350" y2="442" stroke="#27362f" stroke-width="2"/><line x1="610" y1="398" x2="610" y2="442" stroke="#27362f" stroke-width="2"/><line x1="820" y1="398" x2="820" y2="442" stroke="#27362f" stroke-width="2"/>
+  <text x="190" y="472" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#607067">1</text><text x="350" y="472" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#607067">3</text><text x="610" y="472" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#607067">30</text><text x="820" y="472" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#607067">110</text>
+  <line x1="745" y1="170" x2="820" y2="170" stroke="#4f7f86" stroke-width="20" stroke-linecap="round"/><circle cx="745" cy="170" r="12" fill="#3f656a"/><circle cx="820" cy="170" r="12" fill="#3f656a"/>
+  <line x1="255" y1="300" x2="280" y2="300" stroke="#6f9f58" stroke-width="20" stroke-linecap="round"/><circle cx="255" cy="300" r="12" fill="#3e6d33"/><circle cx="280" cy="300" r="12" fill="#3e6d33"/>
+  <text x="120" y="178" font-family="Arial,sans-serif" font-size="22" fill="#27362f">江波龙</text><text x="120" y="308" font-family="Arial,sans-serif" font-size="22" fill="#27362f">埃斯顿</text>
+  <text x="782" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#3f656a">92–110</text><text x="268" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#3e6d33">1.5–1.8</text>
+</svg>

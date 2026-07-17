@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#fbfcf9"/>
+  <text x="60" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#17231d">营运资本同比变化</text>
+  <text x="60" y="88" font-family="Arial,sans-serif" font-size="16" fill="#607067">2026H1期末，应收账款与存货，%</text>
+  <line x1="95" y1="270" x2="900" y2="270" stroke="#9aa69f" stroke-width="2"/>
+  <rect x="165" y="270" width="120" height="141" fill="#4f7f86"/><rect x="300" y="226" width="120" height="44" fill="#7ca1a6"/>
+  <rect x="550" y="204" width="120" height="66" fill="#6f9f58"/><rect x="685" y="270" width="120" height="172" fill="#a8c497"/>
+  <text x="225" y="436" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#3f656a">-23.48</text><text x="360" y="213" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#3f656a">+7.97</text>
+  <text x="610" y="191" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#3e6d33">+12.05</text><text x="745" y="468" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#3e6d33">-29.73</text>
+  <text x="292" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#27362f">沃华：应收 / 存货</text><text x="677" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#27362f">优彩：应收 / 存货</text>
+</svg>
